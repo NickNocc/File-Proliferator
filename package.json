@@ -1,0 +1,14 @@
+{
+  "name": "file-proliferator",
+  "version": "1.0.0",
+  "description": "detects when a file is saved to a directory then copies that file to other directories ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nick Haretakis",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
