@@ -1,7 +1,7 @@
 const fs = require("fs");
 
-const saveLocation = "../../testy/saveSpot";
-const exportFolders = "../../testy/";
+const saveLocation = "C:/boosShare/saveSpot";
+const exportFolders = "C:/boosShare/embroideryTown/";
 
 function fileListener() {
   try {
