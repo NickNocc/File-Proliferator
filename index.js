@@ -1,13 +1,27 @@
-const fs = require("fs");
+// const fs = require("fs");
+import fs from "fs";
+import Watcher from "watcher";
 
 const saveLocation = "C:/boosShare/saveSpot";
 const exportFolders = "C:/boosShare/embroideryTown/";
+const watcher = new Watcher(saveLocation);
 
-function fileListener() {
+export function fileListener() {
   try {
-    fs.watch(saveLocation, (eventType, filename) => {
-      if (eventType == "rename") {
-        bunnyProtocol(filename);
+    // fs.watch(saveLocation, (eventType, newFileName) => {
+    //   if (eventType == "rename") {
+    //     bunnyProtocol(newFileName);
+    //   }
+    // });
+
+    watcher.on("all", (event, targetPath, targetPathNext) => {
+      // console.log("event: ", event);
+      // console.log("targetPath: ", targetPath);
+      // console.log("targetPathNext: ", targetPathNext);
+
+      if (event == "add") {
+        // console.log("File Added");
+        bunnyProtocol(targetPath)
       }
     });
   } catch (err) {
@@ -15,20 +29,23 @@ function fileListener() {
   }
 }
 
-function bunnyProtocol(newFile) {
+export function bunnyProtocol(newFile) {
   fs.readdir(exportFolders, (err, files) => {
+    let newFileName = newFile.split("\\");
+
+    newFileName = newFileName.pop();
     if (err) {
-      console.log("file deleted");
+      console.log(err);
       return;
     }
+
     files.forEach((folder) => {
       if (folder == "saveSpot") {
         return;
       }
-
       fs.copyFile(
-        saveLocation + "/" + newFile,
-        exportFolders + folder + "/" + newFile,
+        newFile,
+        exportFolders + folder + "/" + newFileName,
         (err) => {
           if (err) {
             if (err.errno == "-2") {
@@ -43,4 +60,5 @@ function bunnyProtocol(newFile) {
   });
 }
 
-module.exports = fileListener;
+// module.exports = fileListener;
+// export { fileListener, bunnyProtocol };

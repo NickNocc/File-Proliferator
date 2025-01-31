@@ -1,6 +1,7 @@
-const express = require('express');
-
-const fileListener = require("./index");
+// const express = require('express');
+import express from 'express'
+// const fileListener = require("./index");
+import { fileListener } from './index.js';
 
 const app = express();
 const PORT = 3002;

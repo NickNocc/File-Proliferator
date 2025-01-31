@@ -9,6 +9,7 @@
   "author": "Nick Haretakis",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "watcher": "^2.3.1"
   }
 }
